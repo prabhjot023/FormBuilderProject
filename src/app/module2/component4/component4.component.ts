@@ -41,10 +41,12 @@ export class Component4Component implements OnInit {
   updateData()
   {
     this.sharedService.updateData(this.addForm.value).subscribe(d =>{
-      
+      if(d!=null){
+        this.router.navigate(['/comp1']);
+        }
 
     });
 
-    this.router.navigate(['/comp1']);
+    //this.router.navigate(['/comp1']);
   }
 }

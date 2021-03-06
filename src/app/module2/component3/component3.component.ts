@@ -27,13 +27,14 @@ export class Component3Component implements OnInit {
     if(this.addForm.valid){
     this.service.sendData(this.addForm.value).subscribe(d=>
       {
-        console.log(d.message);
-        this.ApiData=d;
-
         
+        this.ApiData=d;
+        if(d!=null){
+        this.router.navigate(['/comp1']);
+        }
       });
       
-      this.router.navigate(['/comp1']);
+      //this.router.navigate(['/comp1']);
      
       
 
