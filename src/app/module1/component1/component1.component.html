@@ -1,0 +1,31 @@
+<!-- <button mat-raised-button color="primary" [routerLink]="['/module2']" > Add Data</button> -->
+
+<button mat-raised-button color="accent" [routerLink]="['/comp3']" > Add Data</button>
+
+
+<table >
+    <tr>
+        <th>Id</th>
+        <th>Employee Name</th>
+        <th>Employee Salary</th>
+        <th>Employee Age</th>
+    </tr>
+    <tr *ngFor="let i of ReceivedData">
+        <td>{{i.id}}</td>
+        
+        <td>{{i.employee_name | uppercase}}</td>
+        
+
+        <td>{{i.employee_salary }}</td>
+
+        <td>{{i.employee_age}}</td>
+
+        <button mat-raised-button color="accent" [routerLink]="['/comp4']" [queryParams]="{id:i.id}" > Update data</button>
+        <button mat-raised-button color="accent" (click)="deleteData(i)"  > Delete data</button>
+
+
+       
+
+    </tr>
+</table>
+

@@ -1,0 +1,55 @@
+
+
+<mat-card>
+    <mat-card-content>
+        <form [formGroup]="addForm"  >
+        <mat-form-field appearance="fill"> 
+            <mat-label>Id</mat-label>
+            <input type="number" matInput formControlName="id" required>
+            <mat-error *ngIf="addForm.controls.id.touched &&  addForm.controls.id.invalid">
+              Please fill the id
+            </mat-error>
+
+          </mat-form-field>
+
+        <br/>
+
+          
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="employee_name" required>
+        <mat-error *ngIf="addForm.controls.employee_name.touched &&  addForm.controls.employee_name.invalid">
+          Please fill the name
+        </mat-error>
+      </mat-form-field>
+
+      <br/>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Salary</mat-label>
+        <input  type="number" matInput formControlName="employee_salary" required>
+        <mat-error *ngIf="addForm.controls.employee_salary.touched &&  addForm.controls.employee_salary.invalid">
+          Please fill the age
+        </mat-error>
+      </mat-form-field>
+
+      <br/>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Age</mat-label>
+        <input type="number" matInput formControlName="employee_age" required>
+        <mat-error *ngIf="addForm.controls.employee_age.touched &&  addForm.controls.employee_age.invalid">
+          Please fill the salary
+        </mat-error>
+      </mat-form-field>
+      <br>
+      
+      <button mat-raised-button color="accent" type="submit" (click)="sendData()">Add Data</button>
+  
+    </form>
+      
+    </mat-card-content>
+
+
+</mat-card>
+
