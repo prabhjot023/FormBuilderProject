@@ -1,14 +1,26 @@
-table,th,td{
+
+table{
     border :1px solid rgb(247, 62, 161)
 }
 tr:hover{
     background-color: #f7b2d7;
     
+    
 }
+
 .mat-form-field {
   font-size: 14px;
   width: 100%;
 }
+th{
+  font-size: large;
+}
+th.mat-sort-header-sorted {
+  color: black;
+  
+  
+}
+
 
 
   button {

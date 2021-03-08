@@ -1,4 +1,4 @@
-import { MatSort } from '@angular/material/sort';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material';
 import { NgModule } from '@angular/core';
@@ -9,6 +9,7 @@ import { Module1RoutingModule } from './module1-routing.module';
 import { Component2Component } from './component2/component2.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 
@@ -16,8 +17,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 @NgModule({
   declarations: [Component1Component, Component2Component],
   imports: [
-    CommonModule,Module1RoutingModule,MatButtonModule,MatTableModule,MatFormFieldModule,MatInputModule
+    CommonModule,Module1RoutingModule,MatButtonModule,MatTableModule,MatFormFieldModule,
+    MatInputModule,MatSortModule,MatPaginatorModule
   ]
-  ,providers:[SharedServiceService]
+  ,providers:[SharedServiceService],
+  exports:[MatSortModule]
 })
 export class Module1Module { }

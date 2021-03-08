@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { SharedServiceService } from './../../shared-service.service';
 import { Component, OnInit, Injectable, ViewChild } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
@@ -14,16 +15,18 @@ import { PageEvent } from "@angular/material";
 export class Component1Component implements OnInit{
   
   @ViewChild(MatSort,{static: false}) sort:MatSort;
-  //dataSource:any;
+  @ViewChild(MatPaginator,{static:false}) paginator :MatPaginator;
+  dataSource:any;
 
   displayedColumns: string[] = ['id', 'employee_name', 'employee_salary', 'employee_age','Action'];
-  totalPosts = 0;
-  postsPerPage = 2;
-  currentPage = 1;
-  pageSizeOptions = [5,10,20];
+  
   ReceivedData:any;
+  ReceivedData1:any;
   count:any;
   data1:any;
+  r:any;
+  pageSize:any;
+
 
   data={
     employee_name:String,
@@ -36,15 +39,22 @@ export class Component1Component implements OnInit{
   constructor(public service:SharedServiceService) { }
 
   ngOnInit(){
+    this.get();
+  }
     
-    this.ReceivedData=new MatTableDataSource();
+   get(){
     this.service.getData().subscribe(data =>
       {
-       this.ReceivedData=data.allEmployees;
-        this.data1=this.ReceivedData;
-        this.ReceivedData.sort=this.sort;
+      // this.ReceivedData=data.allEmployees;
+      this.ReceivedData1=data.allEmployees;
+      this.pageSize=data.allEmployees.length;
+       this.ReceivedData=new MatTableDataSource<any>(this.ReceivedData1);
+      
+        this.data1=data.allEmployees;
+         this.ReceivedData.sort=this.sort;
+         this.ReceivedData.paginator=this.paginator;
      });
-    //this.ReceivedData.sort=this.sort;
+    
      
      
   }
@@ -52,11 +62,14 @@ export class Component1Component implements OnInit{
   applyFilter(event) {
     
     if(event.target.value == '' ){
-      this.ReceivedData=this.data1;
+     this.get();
+     // this.ReceivedData.paginator=this.paginator;
+
     }
     else{
+      
       this.ReceivedData=this.data1;
-      console.log(this.data1);
+      
     let s=[];
     this.ReceivedData.filter(d=>{
         const filterValue = (event.target.value);
@@ -73,27 +86,15 @@ export class Component1Component implements OnInit{
        
       }
     })
-  
-    this.ReceivedData=s;
-  
+    this.ReceivedData=new MatTableDataSource<any>(s);
+    
+    this.ReceivedData.sort=this.sort;
+         this.ReceivedData.paginator=this.paginator;
     }
   }
   
   
-  onChangedPage(pageData: PageEvent) {
    
-    this.currentPage = pageData.pageIndex + 1;
-    this.postsPerPage = pageData.pageSize;
-    this.count=this.pageSizeOptions;
-    
-  
-    this.service.getData().subscribe(data =>
-      {
-       
-      
-     });
-  }
-
   deleteData(i)
   {
    
