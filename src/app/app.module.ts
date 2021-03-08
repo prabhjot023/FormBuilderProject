@@ -10,12 +10,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { DemoComponent } from './demo/demo.component';
 import { Module2Module } from './module2/module2.module';
+import { MultiplierPipe } from './multiplier.pipe';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DemoComponent
+    DemoComponent,
+    MultiplierPipe
   ],
   imports: [
     BrowserModule,
